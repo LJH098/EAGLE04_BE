@@ -7,10 +7,10 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
-@Table(name = CatergoryEntity.ENTITY_PREFIX + "_TB")
+@Table(name = ItemEntity.ENTITY_PREFIX + "_TB")
 @Builder(toBuilder = true)
-public class CatergoryEntity {
-    public static final String ENTITY_PREFIX = "CATERGORY";
+public class ItemEntity {
+    public static final String ENTITY_PREFIX = "ITEM";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +19,11 @@ public class CatergoryEntity {
 
     @Column(name = ENTITY_PREFIX + "_NAME", unique = true)
     private String name;
+
+    @Column(name = ENTITY_PREFIX + "_DESCRIPTION", nullable = false, columnDefinition="TEXT")
+    private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = CategoryEntity.ENTITY_PREFIX + "_PK")
+    private CategoryEntity categoryEntity;
 }

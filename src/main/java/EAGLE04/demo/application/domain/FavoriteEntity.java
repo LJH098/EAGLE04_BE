@@ -23,6 +23,6 @@ public class FavoriteEntity extends BaseEntity {
     private MemberEntity memberEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = CatergoryEntity.ENTITY_PREFIX + "_PK")
-    private CatergoryEntity catergoryEntity;
+    @JoinColumn(name = CategoryEntity.ENTITY_PREFIX + "_PK")
+    private CategoryEntity categoryEntity;
 }
