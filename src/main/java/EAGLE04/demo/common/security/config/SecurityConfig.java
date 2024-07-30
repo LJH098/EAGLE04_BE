@@ -65,7 +65,7 @@ public class SecurityConfig {
                                 "/v1/members/checked/**",
                                 "/v1/members/email/checked",
                                 "/actuator/**",
-                                "/v1/health", "/login", "/oauth2/**").permitAll()
+                                "/v1/health", "/login/**", "/oauth2/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/v1/members/email/confirmed").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/members").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
