@@ -13,5 +13,5 @@ public class Error {
 
     private String reason;
 
-    private String status;
+    private Integer status;
 }

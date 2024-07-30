@@ -28,6 +28,7 @@ public class LoginService implements LoginUseCase {
             jwtManager.generateAccessToken(member.get().getId());
             return LoginResponse.builder()
                     .accessToken(jwtManager.generateAccessToken(member.get().getId()))
+                    .name(member.get().getName())
                     .build();
         }
     }
@@ -42,6 +43,7 @@ public class LoginService implements LoginUseCase {
         jwtManager.generateAccessToken(member.getId());
         return LoginResponse.builder()
                 .accessToken(jwtManager.generateAccessToken(member.getId()))
+                .name(member.getName())
                 .build();
     }
 }

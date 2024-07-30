@@ -13,4 +13,10 @@ public class ApiError {
         this.status = status;
         this.code = code;
     }
+
+    public ApiError(String message, int status) {
+        this.message = message;
+        this.status = status;
+        this.code = null;
+    }
 }

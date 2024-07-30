@@ -16,7 +16,7 @@ public enum MemberError implements BaseError {
 
     @Override
     public Error getError() {
-        return Error.builder().reason(reason).code(code).status(status.toString()).build();
+        return Error.builder().reason(reason).code(code).status(status).build();
     }
 }
 

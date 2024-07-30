@@ -10,5 +10,9 @@ public class ApiUtils {
     public static ApiResult<?> error(String message, HttpStatus status, String code){
         return new ApiResult<>(false, null, new ApiError(message, status.value(),code));
     }
+
+    public static ApiResult<?> error(String message, HttpStatus status) {
+        return new ApiResult<>(false, null, new ApiError(message, status.value()));
+    }
     private ApiUtils() {}
 }

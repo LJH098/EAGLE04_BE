@@ -8,6 +8,8 @@ import EAGLE04.demo.common.exception.auth.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 
 @RestControllerAdvice
@@ -46,8 +48,24 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(EagleException.class)
-    protected ApiResult<?> handleIllegalArgumentException(EagleException e) {
+    protected ApiResult<?> handleEagleExceptuonHandler(EagleException e) {
         Error error = e.getError();
         return ApiUtils.error(error.getReason(), HttpStatus.valueOf(error.getStatus()), error.getCode());
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(NoHandlerFoundException.class)
+    protected ApiResult<?> handleNoHandlerFoundException(NoHandlerFoundException e) {
+        return ApiUtils.error(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    protected ApiResult<?> handleMethodArgumentTypeMismatchException(
+            MethodArgumentTypeMismatchException e) {
+        return ApiUtils.error(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+    protected ApiResult<?> handleException(Exception e) {
+        return ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
