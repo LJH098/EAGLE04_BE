@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PapagoConfig {
-    @Value("${PAPAGO-TRANSLATE-KEY}")
+    @Value("${PAPAGO.TRANSLATE.KEY}")
     private String apiKey;
 
-    @Value("${PAPAGO-TRANSLATE-ID}")
+    @Value("${PAPAGO.TRANSLATE.ID}")
     private String apiId;
 
     public static final String
