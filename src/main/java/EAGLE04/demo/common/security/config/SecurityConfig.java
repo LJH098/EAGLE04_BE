@@ -52,23 +52,17 @@ public class SecurityConfig {
                 })
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginPage("/login"))
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-                .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login")
-                        .authorizationEndpoint(authorization -> authorization
-                                .baseUri("/oauth2/authorization"))
-                        .userInfoEndpoint(userInfo -> userInfo
-                                .userService(customOauth2UserService))
-                )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .loginPage("/login")
+//                        .authorizationEndpoint(authorization -> authorization
+//                                .baseUri("/oauth2/authorization"))
+//                        .userInfoEndpoint(userInfo -> userInfo
+//                                .userService(customOauth2UserService))
+//                )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                        .requestMatchers(HttpMethod.GET,
-                                "/v1/members/checked/**",
-                                "/v1/members/email/checked",
-                                "/actuator/**",
-                                "/v1/health", "/login/**", "/oauth2/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/v1/members/email/confirmed").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/v1/members").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/login", "/oauth2/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
