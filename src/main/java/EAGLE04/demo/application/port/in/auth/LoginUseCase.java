@@ -1,7 +1,9 @@
 package EAGLE04.demo.application.port.in.auth;
 
-import EAGLE04.demo.adapter.in.auth.response.NaverLoginResponse;
+import EAGLE04.demo.adapter.in.auth.request.LoginRequest;
+import EAGLE04.demo.adapter.in.auth.response.LoginResponse;
 
 public interface LoginUseCase {
-    NaverLoginResponse naverLogin(String code, String state);
+    LoginResponse login(LoginRequest request);
+    LoginResponse signIn(LoginRequest request);
 }
