@@ -23,6 +23,6 @@ public class CategoryEntity {
     @Column(name = ENTITY_PREFIX + "_NAME", unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "catergoryEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categoryEntity", fetch = FetchType.LAZY)
     private List<ItemEntity> itemEntities = new ArrayList<>();
 }

@@ -6,6 +6,8 @@ import EAGLE04.demo.common.exception.category.CategoryNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class CategoryPersistenceAdapter implements CategoryPort {
@@ -14,5 +16,10 @@ public class CategoryPersistenceAdapter implements CategoryPort {
     public CategoryEntity findById(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> CategoryNotFoundException.EXECPTION);
+    }
+
+    @Override
+    public List<CategoryEntity> findAll() {
+        return categoryRepository.findAll();
     }
 }
