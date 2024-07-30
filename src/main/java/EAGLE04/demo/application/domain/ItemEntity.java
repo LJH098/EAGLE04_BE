@@ -23,6 +23,9 @@ public class ItemEntity {
     @Column(name = ENTITY_PREFIX + "_DESCRIPTION", nullable = false, columnDefinition="TEXT")
     private String description;
 
+    @Column(name = ENTITY_PREFIX + "_ADDITIONAL_DESCRIPTION", columnDefinition="TEXT")
+    private String additionalDescription;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = CategoryEntity.ENTITY_PREFIX + "_PK")
     private CategoryEntity categoryEntity;
