@@ -2,8 +2,8 @@ package EAGLE04.demo.common.security.config;
 
 import EAGLE04.demo.common.security.domain.JwtManager;
 import EAGLE04.demo.common.security.domain.JwtResolver;
-import EAGLE04.demo.common.security.exception.JwtAccessDeniedHandler;
-import EAGLE04.demo.common.security.exception.JwtAuthenticationPoint;
+import EAGLE04.demo.common.exception.auth.JwtAccessDeniedHandler;
+import EAGLE04.demo.common.exception.auth.JwtAuthenticationPoint;
 import EAGLE04.demo.common.security.filter.JwtAuthenticationFilter;
 import EAGLE04.demo.common.security.service.CustomOauth2UserService;
 import EAGLE04.demo.common.security.service.MemberDetailService;
@@ -50,7 +50,6 @@ public class SecurityConfig {
                     exceptions.authenticationEntryPoint(jwtAuthenticationPoint);
                     exceptions.accessDeniedHandler(jwtAccessDeniedHandler);
                 })
-                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginPage("/login"))
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
 //                .oauth2Login(oauth2 -> oauth2
 //                        .loginPage("/login")
@@ -62,7 +61,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                         .requestMatchers(HttpMethod.GET, "/login", "/oauth2/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login/**", "/login").permitAll()
                         .anyRequest().authenticated()
                 );
 

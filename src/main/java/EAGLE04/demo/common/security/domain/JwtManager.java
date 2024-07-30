@@ -1,8 +1,8 @@
 package EAGLE04.demo.common.security.domain;
 
 
-import EAGLE04.demo.common.security.exception.InvalidJwtException;
-import EAGLE04.demo.common.security.exception.UnSupportedJwtException;
+import EAGLE04.demo.common.exception.auth.InvalidJwtException;
+import EAGLE04.demo.common.exception.auth.UnSupportedJwtException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -65,7 +65,7 @@ public class JwtManager {
                     request.getRequestURL(),
                     LocalDateTime.now(),
                     e.getMessage());
-            throw EAGLE04.demo.common.security.exception.ExpiredJwtException.EXECPTION; // 토큰이 만료된 경우
+            throw EAGLE04.demo.common.exception.auth.ExpiredJwtException.EXECPTION; // 토큰이 만료된 경우
         } catch (io.jsonwebtoken.UnsupportedJwtException e) {
             log.error(
                     "method ={}, URL = {}, time={}, errorMessage={}",
@@ -130,7 +130,7 @@ public class JwtManager {
                     request.getRequestURL(),
                     LocalDateTime.now(),
                     e.getMessage());
-            throw EAGLE04.demo.common.security.exception.ExpiredJwtException.EXECPTION; // 토큰이 만료된 경우
+            throw EAGLE04.demo.common.exception.auth.ExpiredJwtException.EXECPTION; // 토큰이 만료된 경우
         } catch (io.jsonwebtoken.UnsupportedJwtException e) {
             log.error(
                     "method ={}, URL = {}, time={}, errorMessage={}",

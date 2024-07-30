@@ -2,6 +2,7 @@ package EAGLE04.demo.adapter.out.jpa.member;
 
 import EAGLE04.demo.application.domain.MemberEntity;
 import EAGLE04.demo.application.port.out.member.MemberPort;
+import EAGLE04.demo.common.exception.member.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class MemberPersistenceAdapter implements MemberPort {
     public MemberEntity findById(Long memberId) {
         return memberRepository
                 .findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+                .orElseThrow(() -> MemberNotFoundException.EXECPTION);
     }
 
     @Override
@@ -34,7 +35,13 @@ public class MemberPersistenceAdapter implements MemberPort {
     @Override
     public MemberEntity findByEmail(String email) {
         return memberRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+                .orElseThrow(() -> MemberNotFoundException.EXECPTION);
+    }
+
+    @Override
+    public MemberEntity findByName(String name) {
+        return memberRepository.findByName(name)
+                .orElseThrow(() -> MemberNotFoundException.EXECPTION);
     }
 }
 

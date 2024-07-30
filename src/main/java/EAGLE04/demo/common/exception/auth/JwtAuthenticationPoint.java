@@ -1,4 +1,4 @@
-package EAGLE04.demo.common.security.exception;
+package EAGLE04.demo.common.exception.auth;
 
 import EAGLE04.demo.adapter.in.ApiUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;

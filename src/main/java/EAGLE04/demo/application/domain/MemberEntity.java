@@ -18,7 +18,7 @@ public class MemberEntity extends BaseEntity {
     @Column(name = ENTITY_PREFIX + "_PK", nullable = false)
     private Long id;
 
-    @Column(name = ENTITY_PREFIX + "_EMAIL", nullable = false, unique = true)
+    @Column(name = ENTITY_PREFIX + "_EMAIL", unique = true)
     private String email;
 
     @Column(name = ENTITY_PREFIX + "_PASSWORD")
@@ -35,6 +35,6 @@ public class MemberEntity extends BaseEntity {
     @Column(name = ENTITY_PREFIX + "PROVIDER_ID")
     private String providerId;
 
-    @Column(name = ENTITY_PREFIX + "NAME")
+    @Column(name = ENTITY_PREFIX + "NAME", unique = true)
     private String name;
 }

@@ -9,5 +9,7 @@ public interface MemberPort {
     Optional<MemberEntity> findByProviderAndProviderId(String provider, String providerId);
     void command(MemberEntity memberEntity);
 
+    MemberEntity findByName(String name);
+
     MemberEntity findByEmail(String email);
 }

@@ -11,4 +11,6 @@ public interface MemberRepository
     Boolean existsByEmail(String email);
     Optional<MemberEntity> findByEmail(String email);
     Optional<MemberEntity> findByProvider(String provider);
+
+    Optional<MemberEntity> findByName(String name);
 }
