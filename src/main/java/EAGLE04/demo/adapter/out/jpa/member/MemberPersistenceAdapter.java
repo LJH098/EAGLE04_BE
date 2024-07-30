@@ -1,7 +1,7 @@
 package EAGLE04.demo.adapter.out.jpa.member;
 
 import EAGLE04.demo.application.domain.MemberEntity;
-import EAGLE04.demo.application.port.member.MemberPort;
+import EAGLE04.demo.application.port.out.member.MemberPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +29,12 @@ public class MemberPersistenceAdapter implements MemberPort {
     @Override
     public void command(MemberEntity memberEntity) {
         memberRepository.save(memberEntity);
+    }
+
+    @Override
+    public MemberEntity findByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
     }
 }
 
