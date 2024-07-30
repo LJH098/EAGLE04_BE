@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
     private final GetItemsUseCase getItemsUseCase;
     private final GetCategoriesUseCase getCategoriesUseCase;
-
-    @GetMapping("/")
+    @GetMapping("")
     public ApiResult<GetCategoriesResponse> getCategories() {
         return ApiUtils.success(getCategoriesUseCase.getCategories());
     }

@@ -42,3 +42,7 @@ spring:
             user-name-attribute: response
 jwt:
   secret: ${JWT_SECRET}
+PAPAGO:
+  TRANSLATE:
+    KEY: ${PAPAGO_TRANSLATE_KEY}
+    ID: ${PAPAGO_TRANSLATE_ID}

@@ -5,16 +5,26 @@ import EAGLE04.demo.adapter.in.ApiUtils;
 import EAGLE04.demo.common.exception.EagleException;
 import EAGLE04.demo.common.exception.Error;
 import EAGLE04.demo.common.exception.auth.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.time.format.DateTimeParseException;
+
 
 @RestControllerAdvice
 @Slf4j
 public class ExceptionHandler {
+
+    @org.springframework.web.bind.annotation.ExceptionHandler({InvalidFormatException.class, DateTimeParseException.class})
+    public ApiResult<?> jsonParseExceptionHandler(
+            JsonProcessingException e) {
+        return ApiUtils.error(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
     @org.springframework.web.bind.annotation.ExceptionHandler(ExpiredJwtException.class)
     protected ApiResult<?> handleExpiredJwtAuthenticationException(ExpiredJwtException e) {
         return ApiUtils.error(
