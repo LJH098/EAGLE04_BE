@@ -22,39 +22,35 @@ public class PapagoService {
 
     private static RestTemplate restTemplate = new RestTemplate();
 
-    public String textTranslation(PapagoRequest request) {
-        try {
-            PapagoRequestDto papagoRequestDto = PapagoRequestDto.builder()
-                    .source(PapagoConfig.source)
-                    .target(request.source())
-                    .text(request.text()).build();
+    public String textTranslation(PapagoRequest request) throws Exception {
 
-            PapagoResponseDto papagoResponseDto = this.getResponse(buildHttpEntity(papagoRequestDto));
+        PapagoRequestDto papagoRequestDto = PapagoRequestDto.builder()
+                .source(PapagoConfig.source)
+                .target(request.target())
+                .text(request.text()).build();
 
-            String translatedtext = papagoResponseDto.message().result().translatedtext();
+        PapagoResponseDto papagoResponseDto = this.getResponse(buildHttpEntity(papagoRequestDto));
+        return papagoResponseDto.message().result().translatedtext();
 
-            JsonNode jsonNode = objectMapper.readTree(translatedtext);
-            String translatedParsingText = jsonNode.get("text").asText();
-            return translatedParsingText;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+//        JsonNode jsonNode = objectMapper.readTree(translatedtext);
+//        String translatedParsingText = jsonNode.get("text").asText();
+//        return translatedParsingText;
+
+    }
+        private HttpEntity<PapagoRequestDto> buildHttpEntity (PapagoRequestDto papagoRequestDto){
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType(PapagoConfig.CONTENT_TYPE));///?
+            headers.add(PapagoConfig.KEY_NAME, papagoConfig.getApiKey());
+            headers.add(PapagoConfig.ID_NAME, papagoConfig.getApiId());
+            return new HttpEntity<>(papagoRequestDto, headers);
         }
-    }
-    private HttpEntity<PapagoRequestDto> buildHttpEntity(PapagoRequestDto papagoRequestDto) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(PapagoConfig.CONTENT_TYPE));///?
-        headers.add(PapagoConfig.KEY_NAME,papagoConfig.getApiKey());
-        headers.add(PapagoConfig.ID_NAME,papagoConfig.getApiId());
-        return new HttpEntity<>(papagoRequestDto, headers);
-    }
 
-    public PapagoResponseDto getResponse(HttpEntity<PapagoRequestDto> papagoRequestDtoHttpEntity) {
-        ResponseEntity<PapagoResponseDto> responseEntity = restTemplate.postForEntity(
-                PapagoConfig.URL,
-                papagoRequestDtoHttpEntity,
-                PapagoResponseDto.class);
-        return responseEntity.getBody();
-    }
+        public PapagoResponseDto getResponse (HttpEntity < PapagoRequestDto > papagoRequestDtoHttpEntity) {
+            ResponseEntity<PapagoResponseDto> responseEntity = restTemplate.postForEntity(
+                    PapagoConfig.URL,
+                    papagoRequestDtoHttpEntity,
+                    PapagoResponseDto.class);
+            return responseEntity.getBody();
+        }
 
-}
+    }

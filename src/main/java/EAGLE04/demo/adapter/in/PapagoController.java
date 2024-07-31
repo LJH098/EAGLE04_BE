@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PapagoController {
     private final PapagoService papagoService;
     @PostMapping("/translate")
-    public ApiResult<String> translate(@RequestBody PapagoRequest request) {
+    public ApiResult<String> translate(@RequestBody PapagoRequest request) throws Exception {
         return ApiUtils.success(papagoService.textTranslation(request));
     }
 }
