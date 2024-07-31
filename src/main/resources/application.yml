@@ -3,3 +3,6 @@ spring:
     import: optional:file:.env[.properties]
   profiles:
     active: ${ENVIRONMENT}
+  mvc:
+    servlet:
+      path: /api
