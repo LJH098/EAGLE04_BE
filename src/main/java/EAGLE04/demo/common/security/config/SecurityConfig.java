@@ -75,7 +75,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://eagle-04-fe.vercel.app/"));
+        configuration.setAllowedOrigins(List.of("https://eagle-04-fe.vercel.app/", "http://localhost:5173"));
         configuration.setAllowedMethods(
                 Arrays.asList("HEAD", "POST", "GET", "DELETE", "PUT", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(
