@@ -29,4 +29,7 @@ public class ItemEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = CategoryEntity.ENTITY_PREFIX + "_PK")
     private CategoryEntity categoryEntity;
+
+    @Column(name = ENTITY_PREFIX + "IMAGE_URL")
+    private String imageUrl;
 }

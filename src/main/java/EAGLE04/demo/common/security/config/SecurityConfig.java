@@ -101,7 +101,9 @@ public class SecurityConfig {
                         "/v3/api-docs/**",
                         "/v3/api-docs",
                         "/api-docs/**",
-                        "/api-docs","/error")
+                        "/api-docs","/error",
+                        "/static/**", "/resources/**",
+                        "*.jpeg", "*.jpg", "*.png", "*.gif", "*.svg", "*.ico")
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 }
