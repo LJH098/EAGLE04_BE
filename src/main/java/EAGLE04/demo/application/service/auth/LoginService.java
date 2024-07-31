@@ -9,6 +9,7 @@ import EAGLE04.demo.application.port.out.member.MemberPort;
 import EAGLE04.demo.common.security.domain.JwtManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -34,6 +35,7 @@ public class LoginService implements LoginUseCase {
     }
 
     @Override
+    @Transactional
     public LoginResponse signIn(LoginRequest request) {
         MemberEntity member = MemberEntity.builder()
                 .name(request.name())

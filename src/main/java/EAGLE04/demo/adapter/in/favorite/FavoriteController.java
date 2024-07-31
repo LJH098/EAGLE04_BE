@@ -22,6 +22,6 @@ public class FavoriteController {
 
     @PostMapping("/add")
     public ApiResult<Void> add(@AuthenticationMemberId Long memberId,@RequestBody AddFavoriteRequest request) {
-        return ApiUtils.success(addFavoriteUseCase.add(memberId, request.categoryId()));
+        return ApiUtils.success(addFavoriteUseCase.add(memberId, request.categoryIds()));
     }
 }
